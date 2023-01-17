@@ -1137,6 +1137,9 @@ func (c *nodeComponent) nodeEnvVars() []corev1.EnvVar {
 		{Name: "FELIX_TYPHACAFILE", Value: "/typha-ca/caBundle"},
 		{Name: "FELIX_TYPHACERTFILE", Value: fmt.Sprintf("/felix-certs/%s", TLSSecretCertName)},
 		{Name: "FELIX_TYPHAKEYFILE", Value: fmt.Sprintf("/felix-certs/%s", TLSSecretKeyName)},
+		{Name: "no_proxy", Value: "SomeValue"},
+		{Name: "http_proxy", Value: "SomeValue"},
+		{Name: "https_proxy", Value: "SomeValue"},
 
 		// We need at least the CN or URISAN set, we depend on the validation
 		// done by the core_controller that the Secret will have one.

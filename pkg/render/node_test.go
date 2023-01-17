@@ -231,6 +231,9 @@ var _ = Describe("Node rendering tests", func() {
 			{Name: "FELIX_TYPHACAFILE", Value: "/typha-ca/caBundle"},
 			{Name: "FELIX_TYPHACERTFILE", Value: fmt.Sprintf("/felix-certs/%s", render.TLSSecretCertName)},
 			{Name: "FELIX_TYPHAKEYFILE", Value: fmt.Sprintf("/felix-certs/%s", render.TLSSecretKeyName)},
+			{Name: "no_proxy", Value: "SomeValue"},
+			{Name: "http_proxy", Value: "SomeValue"},
+			{Name: "https_proxy", Value: "SomeValue"},
 			{Name: "FELIX_TYPHACN", ValueFrom: &corev1.EnvVarSource{
 				SecretKeyRef: &corev1.SecretKeySelector{
 					LocalObjectReference: corev1.LocalObjectReference{
