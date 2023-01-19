@@ -53,14 +53,14 @@ func Convert(ctx context.Context, client client.Client) (*operatorv1.Installatio
 		return nil, err
 	}
 
-	// check for unchecked env vars
-	if uncheckedVars := comps.node.uncheckedVars(); len(uncheckedVars) != 0 {
-		return nil, ErrIncompatibleCluster{
-			err:       fmt.Sprintf("unexpected env vars: %s", uncheckedVars),
-			component: ComponentCalicoNode,
-			fix:       "remove these environment variables from the calico-node daemonest",
-		}
-	}
+	//// check for unchecked env vars
+	//if uncheckedVars := comps.node.uncheckedVars(); len(uncheckedVars) != 0 {
+	//	return nil, ErrIncompatibleCluster{
+	//		err:       fmt.Sprintf("unexpected env vars: %s", uncheckedVars),
+	//		component: ComponentCalicoNode,
+	//		fix:       "remove these environment variables from the calico-node daemonest",
+	//	}
+	//}
 
 	return install, nil
 }
