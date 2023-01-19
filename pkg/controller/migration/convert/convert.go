@@ -5,7 +5,7 @@ package convert
 
 import (
 	"context"
-	"fmt"
+	//"fmt"
 
 	operatorv1 "github.com/tigera/operator/api/v1"
 	kerrors "k8s.io/apimachinery/pkg/api/errors"
