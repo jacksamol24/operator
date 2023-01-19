@@ -131,7 +131,7 @@ CONTAINERIZED= mkdir -p .go-pkg-cache $(GOMOD_CACHE) && \
 		-v $(CURDIR)/.go-pkg-cache:/go-cache/:rw \
 		-e LOCAL_USER_ID=$(LOCAL_USER_ID) \
 		-e GOPATH=/go \
-		-e GOCACHE=/go-cache \
+		-e GOCACHE=/tmp \
 		-e KUBECONFIG=/go/src/$(PACKAGE_NAME)/kubeconfig.yaml \
 		-w /go/src/$(PACKAGE_NAME) \
 		--net=host \
