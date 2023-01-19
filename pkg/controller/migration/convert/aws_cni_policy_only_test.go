@@ -72,7 +72,7 @@ func awsCNIPolicyOnlyConfig() []runtime.Object {
 								},
 								{Name: "IP", Value: ""},
 								{Name: "FELIX_HEALTHENABLED", Value: "true"},
-								{Name: "no_proxy", Value: "no_porxy_value"},
+								{Name: "no_proxy", Value: "no_proxy_value"},
 								{Name: "http_proxy", Value: "http_proxy_value"},
 								{Name: "https_proxy", Value: "https_proxy_value"},
 							},

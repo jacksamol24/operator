@@ -1137,7 +1137,7 @@ func (c *nodeComponent) nodeEnvVars() []corev1.EnvVar {
 		{Name: "FELIX_TYPHACAFILE", Value: "/typha-ca/caBundle"},
 		{Name: "FELIX_TYPHACERTFILE", Value: fmt.Sprintf("/felix-certs/%s", TLSSecretCertName)},
 		{Name: "FELIX_TYPHAKEYFILE", Value: fmt.Sprintf("/felix-certs/%s", TLSSecretKeyName)},
-		{Name: "no_proxy", Value: "no_porxy_value"},
+		{Name: "no_proxy", Value: "no_proxy_value"},
 		{Name: "http_proxy", Value: "http_proxy_value"},
 		{Name: "https_proxy", Value: "https_proxy_value"},
 
