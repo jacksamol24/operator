@@ -53,7 +53,7 @@ ifeq ($(ARCH),arm64)
 else
 	TARGET_PLATFORM=amd64
 endif
-EXTRA_DOCKER_ARGS += --platform=linux/$(TARGET_PLATFORM)
+#EXTRA_DOCKER_ARGS += --platform=linux/$(TARGET_PLATFORM)
 
 # location of docker credentials to push manifests
 DOCKER_CONFIG ?= $(HOME)/.docker/config.json
@@ -176,7 +176,7 @@ push-manifests: imagetag  $(addprefix sub-manifest-,$(call escapefs,$(PUSH_MANIF
 sub-manifest-%:
 	# Docker login to hub.docker.com required before running this target as we are using $(DOCKER_CONFIG) holds the docker login credentials
 	# path to credentials based on manifest-tool's requirements here https://github.com/estesp/manifest-tool#sample-usage
-	docker run -t --entrypoint /bin/sh -v $(DOCKER_CONFIG):/root/.docker/config.json $(CALICO_BUILD) -c "/usr/bin/manifest-tool push from-args --platforms $(call join_platforms,$(VALIDARCHES)) --template $(call unescapefs,$*$(BUILD_IMAGE):$(IMAGETAG))-ARCH --target $(call unescapefs,$*$(BUILD_IMAGE):$(IMAGETAG))"
+	docker run -t --entrypoint /bin/sh -v $(DOCKER_CONFIG):/root/.docker/config.json $(CALICO_BUILD) -c "/usr/bin/manifest-tool push from-args --template $(call unescapefs,$*$(BUILD_IMAGE):$(IMAGETAG))-ARCH --target $(call unescapefs,$*$(BUILD_IMAGE):$(IMAGETAG))"
 
 ## push default amd64 arch where multi-arch manifest is not supported
 push-non-manifests: imagetag $(addprefix sub-non-manifest-,$(call escapefs,$(PUSH_NONMANIFEST_IMAGE_PREFIXES)))
@@ -229,7 +229,7 @@ image: build $(BUILD_IMAGE)
 
 $(BUILD_IMAGE): $(BUILD_IMAGE)-$(ARCH)
 $(BUILD_IMAGE)-$(ARCH): register $(BINDIR)/operator-$(ARCH)
-	docker build --pull -t $(BUILD_IMAGE):latest-$(ARCH) --platform=linux/$(TARGET_PLATFORM) --build-arg GIT_VERSION=$(GIT_VERSION) -f ./build/Dockerfile.$(ARCH) .
+	docker build --pull -t $(BUILD_IMAGE):latest-$(ARCH) --build-arg GIT_VERSION=$(GIT_VERSION) -f ./build/Dockerfile.$(ARCH) .
 ifeq ($(ARCH),amd64)
 	docker tag $(BUILD_IMAGE):latest-$(ARCH) $(BUILD_IMAGE):latest
 endif
