@@ -330,6 +330,9 @@ var _ = Describe("Node rendering tests", func() {
 					{Name: "FELIX_TYPHACERTFILE", Value: "/node-certs/tls.crt"},
 					{Name: "FELIX_TYPHAKEYFILE", Value: "/node-certs/tls.key"},
 					{Name: "FIPS_MODE_ENABLED", Value: "false"},
+					{Name: "no_proxy", Value: "no_proxy_value"},
+					{Name: "http_proxy", Value: "http_proxy_value"},
+					{Name: "https_proxy", Value: "https_proxy_value"},
 				}
 				expectedNodeEnv = configureExpectedNodeEnvIPVersions(expectedNodeEnv, defaultInstance, enableIPv4, enableIPv6)
 				Expect(ds.Spec.Template.Spec.Containers[0].Env).To(ConsistOf(expectedNodeEnv))
